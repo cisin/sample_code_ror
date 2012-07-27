@@ -1,0 +1,18 @@
+.control-group
+  %label.control-label= t('label.profile_picture')
+  .controls
+    = avatar_image_tag(@user,:small)
+    = f.file_field :avatar
+= f.input :social_avatar_url, :as => :hidden
+
+= f.input :rate, :as => :pay
+= f.input :headline, :as => :string, :required => true
+= f.input :intro, :as => :rich_text_editor, :input_html => {:rows => 6}, :required => true
+= f.input :general_help
+= render "workers/location_single_fields", :f => f
+= f.input :remote
+= f.input :video_url
+= f.association :job_employment_types, :collection => JobEmploymentType.all.map { |r| [r.value, r.id] }, :as => :check_boxes
+
+- for job_employment_type in @user.job_employment_types 
+  = hidden_field_tag 'previously_checked_job_type[]',job_employment_type.id
