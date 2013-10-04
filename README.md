@@ -1,4 +1,4 @@
-demo
+Sample code for Ruby on rails
 ====
 --------------
-Demo
+ROR Sample code
